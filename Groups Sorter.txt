@@ -1,0 +1,58 @@
+#include <iostream>
+#include <string>
+#include <ctime>
+using namespace std;
+struct student {
+	string name;
+	int index;
+};
+
+
+int main() {
+	
+
+			int randS;
+			int checker;
+			int moves = 0;
+			student real[10];
+			student flux[10];
+			for (checker = 0; checker<10; checker++) {
+				real[checker].index = checker + 1;
+				real[checker].name = "Kwabena";
+			}
+			srand(time(0));
+
+			while (moves<10) {
+				randS = rand()%10;
+
+				if (real[randS].index != 0) {
+					flux[moves].index = real[randS].index;
+					flux[moves].name = real[randS].name;
+					real[randS].index = 0;
+					moves++;
+				}
+
+			}
+
+
+			cout << "Name			Index\n";
+
+			for (int results = 0; results < 10; results++) {
+
+				cout << real[results].name << "			" << real[results].index << endl;
+			}
+			
+			cout<<"\nName			Index\n";
+
+			for (int results = 0; results < 10; results++) {
+
+				cout<<flux[results].name << "			" << flux[results].index<<endl;
+			}
+
+		
+	
+
+	
+	
+	system("PAUSE");
+}

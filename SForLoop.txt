@@ -1,0 +1,32 @@
+public class JavaTestProject{
+
+public static void main(String args[]){
+
+  average(2,5);
+    
+    
+}
+
+public static int SForLoop(){
+int arr[]={23,55,67,80,95};
+
+for(int x:arr){
+
+System.out.println(x);
+}
+    return 0;
+} 
+
+public static double average(int...avv){
+   double total=0;
+   double ave;
+   
+    for(float x:avv){
+    total+=x;
+    }
+    ave=total/avv.length;
+    System.out.println(ave);
+    return 0;
+}
+
+}

@@ -1,0 +1,204 @@
+package runcheck;
+
+import java.util.Scanner;
+import java.util.Random;
+class student {
+	String name;
+	int index;
+};
+
+public class RunCheck {
+    
+       
+static int groupN;
+static int randS;
+static int checker;
+static int schecker=0;
+static int moves = 0;
+static Scanner sc = new Scanner(System.in);
+static Random ra = new Random();
+
+static student real[] = new student[23];
+static student flux[] = new student [23];
+static student starboys[] = new student [6];
+
+ public static void main(String[] args) {
+  
+    
+    for (checker = 0; checker<23; checker++){
+         real[checker] = new student();}
+        for (checker = 0; checker<23; checker++){
+         flux[checker] = new student();
+        }
+        for (checker = 0; checker<6; checker++){
+         starboys[checker] = new student();
+        }
+                          
+			for (checker = 0; checker<23; checker++) {
+                            if(checker == 10 || checker == 13){
+                            real[checker].index = schecker + 2;
+                            schecker = schecker + 2;
+                            }
+                            else{
+ 				real[checker].index = schecker + 1;
+                                schecker++;
+                            }
+			}
+
+			names();
+                    
+                           while (moves<21) {
+				randS = ra.nextInt(6);
+				if (starboys[randS].index != 0) {
+					flux[moves].index = starboys[randS].index;
+					flux[moves].name = starboys[randS].name;
+					starboys[randS].index = 0;
+					moves = moves + 4;     
+				}
+			}
+                                        real[2].index = 0;
+                                        real[8].index = 0;
+                                        real[9].index = 0;
+                                        real[11].index = 0;
+                                        real[15].index = 0;
+                                        real[18].index = 0;
+                           
+                         moves = 0;  
+                           
+			while (moves<23) {
+				randS = ra.nextInt(23);
+				if (real[randS].index != 0 && flux[moves].name == null) {
+					flux[moves].index = real[randS].index;
+					flux[moves].name = real[randS].name;
+					real[randS].index = 0;
+					moves++;     
+				}
+                            if(real[randS].index != 0 && flux[moves].name != null){
+                                        ++moves;              
+                                        flux[moves].index = real[randS].index;
+					flux[moves].name = real[randS].name;
+					real[randS].index = 0;
+                                        moves++;
+                                }
+			}
+
+			names();
+			display1();
+			System.out.print("Enter number of memebers per group: ");
+			groupN = sc.nextInt();
+			display2(); 
+    
+    
+ }
+ 
+static void names() {
+    
+        starboys[0].index = 3;
+        starboys[1].index = 9;
+        starboys[2].index = 10;
+        starboys[3].index = 13;
+        starboys[4].index = 18;
+        starboys[5].index = 21;
+    
+        starboys[0].name = "Alfred Adomako Botchway";
+        starboys[1].name = "Benedict Oppong";
+        starboys[2].name = "Charles Takyi Appiagyei";
+        starboys[3].name = "Samuel Amoah";
+        starboys[4].name = "Caleb Henry Amoh";
+        starboys[5].name = "Gideon Bosokah";
+    
+	real[0].name = "Francis Tanoh";
+	real[1].name = "Ato Bondzie Kwasin";
+	real[2].name = "Alfred Adomako Botchway";
+	real[3].name = "Gabriel Kofi Kuenyegah Jnr.";
+	real[4].name = "Roland Owusu Nkum";
+	real[5].name = "Solomon Boateng";
+	real[6].name = "Rudolph Azzu";
+	real[7].name = "Justice Evans Osei Bonsu";
+	real[8].name = "Benedict Oppong";
+	real[9].name = "Charles Takyi Appiagyei";
+	real[10].name = "Dereck Stevens";
+	real[11].name = "Samuel Amoah";
+	real[12].name = "Halima Daud Nuhu";
+	real[13].name = "Abdul Kasiru Zakaria";
+	real[14].name = "Schubert Miah";
+	real[15].name = "Caleb Henry Amoh";
+	real[16].name = "Shadrack Fobiri";
+	real[17].name = "Priscilla Bedzrah";
+	real[18].name = "Gideon Bosokah";
+	real[19].name = "Mensborn Agyei Boateng";
+	real[20].name = "Festus Yeboah-Agyekum";
+	real[21].name = "Prince Amponsah";
+	real[22].name = "Michael Idun Hagan";
+        
+}
+
+
+static void display1() {
+schecker=0;
+                        
+			for (checker = 0; checker<23; checker++) {
+                            if(checker == 10 || checker == 13){
+                            real[checker].index = schecker + 2;
+                            schecker = schecker + 2;
+                            }
+                            else{
+ 				real[checker].index = schecker+ 1;
+                                schecker++;
+                            }
+			}
+
+
+	System.out.print("Index				Name\n");
+	System.out.print("_____				____\n");
+
+	for (int results = 0; results < 23; results++) {
+
+		if (real[results].index < 10) {
+			System.out.println("ED/CSC/16/000" + real[results].index + "			" + real[results].name);
+		}
+
+		if (real[results].index >= 10) {
+			System.out.println("ED/CSC/16/00" + real[results].index + "			" + real[results].name);
+		}
+
+
+	}
+}
+
+
+static int display2() {
+	int counter=0;
+	int yo = 1;
+
+	System.out.println("GROUP "+ yo);
+	System.out.println("Index				Name\n");
+	System.out.println("_____				____\n");
+
+	for (int check2 = 0; check2 < 23; check2++) {
+
+		
+		if (flux[check2].index < 10) {
+			System.out.println("ED/CSC/16/000" + flux[check2].index + "			" + flux[check2].name);
+			counter++;
+		}
+
+		if (flux[check2].index >= 10) {
+			System.out.println("ED/CSC/16/00" + flux[check2].index + "			" + flux[check2].name);
+			counter++;
+		}
+
+		if (counter == groupN && check2!=22) {
+			System.out.println("\nGROUP" + (++yo));
+			System.out.println("Index				Name\n");
+			System.out.println("_____				____\n");
+			counter = 0;
+
+		}
+	}
+
+	return 0;
+}    
+        
+     
+    }

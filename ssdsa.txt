@@ -1,0 +1,197 @@
+package com.example.cgpacalculator;
+
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import java.util.Scanner;
+
+public class MainActivity extends AppCompatActivity {
+
+    static int cummulativeCredit = 0;
+    static float cummulativeGradePoint = 0;
+    static int possibility=0;
+    static short totalCredit=0;
+    static short check=0;
+    static short firsttime = 0;
+    static short tdecide=1;
+    static int temp;
+    EditText input = (EditText) findViewById(R.id.inputView);
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        display("Welcome to my CGPA calculator program.\n");
+        select();
+    }
+
+    public void submitter(View v){
+
+
+        if (check==1){
+            while(tdecide==1){
+                tcgpa();
+                minmax();
+            }
+        }
+        else{
+            credit();
+            gradePoint();
+            cgpa();
+
+            while(tdecide==1)
+            {
+                tcgpa();
+
+                if (firsttime == 0){
+                    display("Your highest possible cgpa(All A's) is:" +
+                            ((cummulativeGradePoint + possibility) / cummulativeCredit) * 4 +
+                            "\nYour lowest possible cgpa(All D's) is:" + ((cummulativeGradePoint + totalCredit) / cummulativeCredit) * 4 );
+
+                    firsttime ++;
+
+                }
+
+                minmax();
+            }
+
+        }
+
+
+    }
+
+
+    public int select(){
+        display("Select your current semester\nEnter the number appended to it to select\n"
+                + "1.100 first semester\n2.100 second semester\n3.200 first semester\n4.200 second semester  \n"
+                + "5.300 first semester\n6.300 second semester\n7.400 first semester\n8.400 second semester\n\nEnter selection: ");
+
+        check = (short) Integer.parseInt(input.getText().toString());
+
+
+        return 0;
+    }
+
+
+    public int credit(){
+        short level=100;
+        int credit;
+        short loop = 1;
+
+
+        while (loop < check)
+        {
+
+
+            display("Enter total credit for level " + level + " semester ");
+            display(loop%2==0? "2: ":"1: ");
+            credit = Integer.parseInt(input.getText().toString());
+            cummulativeCredit += credit;
+
+            if (loop%2==0){
+                level += 100;
+            }
+
+            loop ++;
+        }
+
+
+        return 0;
+    }
+
+
+    public float gradePoint() {
+
+        short level = 100;
+        float gradePoint;
+        short loop = 1;
+
+
+        while (loop < check) {
+
+
+            display("Enter total gradepoint for level " + level + " semester ");
+            display(loop%2==0? "2: ":"1: ");
+            gradePoint = (float) Integer.parseInt(input.getText().toString());
+            cummulativeGradePoint += gradePoint;
+
+            if (loop%2==0){
+                level += 100;
+            }
+
+            loop ++;
+        }
+
+
+
+
+        return 0;
+    }
+
+
+    public float cgpa() {
+        float cgpa;
+        cummulativeCredit *= 4;
+
+        cgpa = (cummulativeGradePoint / cummulativeCredit) * 4;
+
+        display("Your cgpa is: " + cgpa);
+
+
+
+        return 0;
+    }
+
+
+    public float tcgpa() {
+        float tcgpa;
+        float tgradepoint;
+       display("Enter your target cgpa: ");
+        tcgpa = (float) Integer.parseInt(input.getText().toString());
+
+        if(firsttime==0){
+            display("Enter your total credit hours for current semester: ");
+            totalCredit = (short) Integer.parseInt(input.getText().toString());
+        }
+
+        temp = (4 * totalCredit);
+        cummulativeCredit += (4 * totalCredit);
+        tgradepoint = ((cummulativeCredit*tcgpa) - (4*cummulativeGradePoint))/4;
+        display("You need to obtain a total gradePoint of " + tgradepoint + " to obtain your target cgpa");
+        possibility = totalCredit * 4;
+
+        if (possibility<tgradepoint)
+        {
+            display("Sorry, this is impossible");
+        }
+        else
+        {
+            display("This is possible");
+        }
+
+
+        return 0;
+    }
+
+
+    public float minmax() {
+
+        possibility = 0;
+        cummulativeCredit = cummulativeCredit - temp;
+        display("Enetr 1 to calculate target cgpa or 2 to exit: ");
+        tdecide = (short) Integer.parseInt(input.getText().toString());
+        return 0;
+
+    }
+
+
+    public void display(String scanner) {
+    TextView print = (TextView) findViewById(R.id.display);
+    print.setText(scanner);
+}
+
+
+}

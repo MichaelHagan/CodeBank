@@ -1,0 +1,38 @@
+/*This program creates an array and rearranges array contents randomly in 
+another array. Or at least that's what its supposed to do :( */
+
+import java.util.Random;
+
+public class JavaTestProject {
+    public static void main(String args[]){
+    int randS;
+    int moves=0;
+    int real[]= new int[89];
+    int flux[]= new int[89];
+    Random rand = new Random();
+    for(int checker=0; checker<89; checker++){
+    real[checker]=checker+1;
+    }
+    
+    while(moves<89){
+    randS=rand.nextInt(89);
+    
+    if(real[randS]!=0){
+    flux[moves]=real[randS];
+    real[randS]=0;
+    moves++;
+    }
+    
+    }
+    System.out.println("Real\tFlux");
+     for(int checker=0; checker<89; checker++){
+    real[checker]=checker+1;
+    }
+     
+    for(int results = 0; results < 89; results++){
+         
+    System.out.println(real[results] + "\t" + flux[results]);
+    }
+    
+    }
+    }

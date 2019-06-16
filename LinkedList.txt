@@ -1,0 +1,38 @@
+#include <iostream>
+using namespace std;
+
+struct node {
+	int value;
+	node * next;
+};
+
+node * a, *t, *h;
+
+int main() {
+
+	a = new node;
+	a->value = 1;
+	t = a; //temp node
+	h = a; //node head
+	
+	for (int x = 2; x < 9; x++) {
+
+		a = new node;
+		a->value = x;
+		(*t).next = a;
+		t = a;
+
+	}
+	
+
+	a->next = NULL;
+
+	node * loop = h;
+	while (loop != nullptr) {
+
+		cout << loop->value << endl;
+		loop = loop->next;
+	}
+
+	system ("PAUSE");
+}

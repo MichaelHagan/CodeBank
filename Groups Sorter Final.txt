@@ -1,0 +1,144 @@
+#include <iostream>
+#include <string>
+#include <ctime>
+using namespace std;
+void names();
+void display1();
+int display2();
+int groupN;
+int randS;
+int checker;
+int moves = 0;
+struct student {
+	string name;
+	int index;
+};
+student real[25];
+student flux[25];
+
+
+
+int main() {
+	
+
+			for (checker = 0; checker<25; checker++) {
+				real[checker].index = checker + 1;
+			}
+			names();
+			srand(time(0));
+
+			while (moves<25) {
+				randS = rand()%25;
+
+				if (real[randS].index != 0) {
+					flux[moves].index = real[randS].index;
+					flux[moves].name = real[randS].name;
+					real[randS].index = 0;
+					moves++;
+				}
+
+			}
+			names();
+			display1();
+			cout << "Enter number of memebers per group: ";
+			cin >> groupN;
+			display2();
+
+
+
+			
+	
+	
+	system("PAUSE");
+}
+
+void names() {
+
+	real[0].name = "Francis Tanoh";
+	real[1].name = "Ato Bondzie Kwasin";
+	real[2].name = "Alfred Adomako Botchway";
+	real[3].name = "Gabriel Kofi Kuenyegah Jnr.";
+	real[4].name = "Roland Owusu Nkum";
+	real[5].name = "Solomon Boateng";
+	real[6].name = "Rudolph Azzu";
+	real[7].name = "Justice Evans Osei Bonsu";
+	real[8].name = "Benedict Oppong";
+	real[9].name = "Charles Takyi Appiagyei";
+	real[10].name = "---------";
+	real[11].name = "Dereck Stevens";
+	real[12].name = "Samuel Amoah";
+	real[13].name = "Mathias Ntumi";
+	real[14].name = "Halima Daud Nuhu";
+	real[15].name = "Abdul Kasiru Zakaria";
+	real[16].name = "Schubert Miah";
+	real[17].name = "Caleb Henry Amoh";
+	real[18].name = "Shadrack Fobiri";
+	real[19].name = "Priscilla Bedzrah";
+	real[20].name = "Gideon Bosokah";
+	real[21].name = "Mensborn Agyei Boateng";
+	real[22].name = "Festus Yeboah-Agyekum";
+	real[23].name = "Prince Amponsah";
+	real[24].name = "Michael Idun Hagan";
+
+
+
+}
+
+
+void display1() {
+
+	for (checker = 0; checker < 25; checker++) {
+		real[checker].index = checker + 1;
+	}
+
+
+	cout << "Index				Name\n";
+	cout << "_____				____\n";
+
+	for (int results = 0; results < 25; results++) {
+
+		if (real[results].index < 10) {
+			cout << "ED/CSC/16/000" << real[results].index << "			" << real[results].name << endl;
+		}
+
+		if (real[results].index >= 10) {
+			cout << "ED/CSC/16/00" << real[results].index << "			" << real[results].name << endl;
+		}
+
+
+	}
+}
+
+
+int display2() {
+	int counter=0;
+	int yo = 1;
+
+	cout << "GROUP "<< yo<<endl;
+	cout << "Index				Name\n";
+	cout << "_____				____\n";
+
+	for (int check2 = 0; check2 < 25; check2++) {
+
+		
+		if (flux[check2].index < 10) {
+			cout << "ED/CSC/16/000" << flux[check2].index << "			" << flux[check2].name << endl;
+			counter++;
+		}
+
+		if (flux[check2].index >= 10) {
+			cout << "ED/CSC/16/00" << flux[check2].index << "			" << flux[check2].name << endl;
+			counter++;
+		}
+
+		if (counter == groupN && check2!=24) {
+			cout << "\nGROUP" << ++yo <<endl;
+			cout << "Index				Name\n";
+			cout << "_____				____\n";
+			counter = 0;
+
+		}
+	}
+
+	return 0;
+}

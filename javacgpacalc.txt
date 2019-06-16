@@ -1,0 +1,142 @@
+
+package runcheck;
+import java.util.Scanner;
+
+public class RunCheck {
+static int cummulativeCredit = 0;
+static float cummulativeGradePoint = 0;
+static int possibility=0;
+static short totalCredit=0;
+static Scanner sc = new Scanner(System.in);
+
+    
+    public static void main(String[] args) {
+       	System.out.println("Welcome to my CGPA calculator program. :-) ");
+	
+	credit();
+	gradePoint();
+	cgpa();
+	tcgpa();
+	minmax();
+
+
+
+
+    }
+    static int credit(){
+	short level=100;
+	int credit;
+	short check=0;
+
+	while (check !=1)
+	{
+
+	
+	System.out.println("Enter total credit for level " + level + " first semester: ");
+	credit = sc.nextInt();
+	cummulativeCredit += credit;
+	System.out.println("Press 1 to end or 2 to enter for next semester: ");
+	check = sc.nextShort();
+
+	if (check == 1) {
+		break;
+	}
+
+	System.out.println("Enter total credit for level " + level + " Second semester: ");
+	credit = sc.nextInt();
+	cummulativeCredit += credit;
+	System.out.println("Press 1 to end or 2 to enter for next semester: ");
+	check = sc.nextShort();
+	level += 100;
+	}
+
+
+	return 0;
+}
+
+
+static float gradePoint() {
+
+	int level = 100;
+	float gradePoint;
+	int check = 0;
+
+	while (check != 1)
+	{
+
+
+		System.out.println("Enter total gradepoint for level " + level + " first semester: ");
+		gradePoint = sc.nextFloat();
+		cummulativeGradePoint += gradePoint;
+		System.out.println("Press 1 to end or 2 to enter for next semester: ");
+		check = sc.nextInt();
+
+		if (check == 1) {
+			break;
+		}
+
+		System.out.println("Enter total gradepoint for level " + level + " Second semester: ");
+		gradePoint = sc.nextFloat();
+		cummulativeGradePoint += gradePoint;
+		System.out.println("Press 1 to end or 2 to enter for next semester: ");
+		check = sc.nextInt();
+		level += 100;
+	}
+
+
+
+	return 0;
+}
+
+
+
+static float cgpa() {
+	float cgpa;
+	cummulativeCredit *= 4;
+
+	cgpa = (cummulativeGradePoint / cummulativeCredit) * 4;
+
+	System.out.println("Your cgpa is: " + cgpa);
+
+
+
+	return 0;
+}
+
+
+
+static float tcgpa() {
+	float tcgpa;
+	float tgradepoint;
+	System.out.println("Enter your target cgpa:");
+	tcgpa = sc.nextFloat();
+	System.out.println("Enter your total credit hours for current semester:");
+	totalCredit = sc.nextShort();
+	cummulativeCredit += (4 * totalCredit);
+	tgradepoint = ((cummulativeCredit*tcgpa) - (4*cummulativeGradePoint))/4;
+	System.out.println("You need to obtain a total gradePoint of " + tgradepoint + " to obtain your target cgpa");
+	possibility = totalCredit * 4;
+
+	if (possibility<tgradepoint)
+	{
+		System.out.println("Sorry, this is impossible");
+	}
+	else
+	{
+		System.out.println("This is possible");
+	}
+
+	return 0;
+}
+
+
+static float minmax() {
+
+
+	System.out.println("Your highest possible cgpa is:" + ((cummulativeGradePoint + possibility) / cummulativeCredit) * 4 +
+		"\nYour lowest possible cgpa is:" + ((cummulativeGradePoint + totalCredit) / cummulativeCredit) * 4 ) ;
+
+	
+	return 0;
+}
+}
