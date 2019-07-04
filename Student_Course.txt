@@ -1,0 +1,147 @@
+package runcheck;
+import java.util.Scanner;
+
+class student{
+ 
+private String fullname;
+private int index;
+private int age;
+
+public void setIndex(int a){
+index = a;
+}
+public void setAge(int b){
+age = b;
+}
+public void  setFullname(String c){
+ 
+ fullname = c;
+ 
+ }
+ 
+public String getFullname(){
+return fullname;
+} 
+public int getIndex(){
+return index;
+}
+public int getAge(){
+return age;
+}
+
+}
+
+class subject{
+ 
+private String nameOfSubject[] = new String[5];
+private String subjectCode[] = new String[5];
+private float score[] = new float[5];
+         
+public void setNameOfSubject(String a, int b){
+nameOfSubject[b] = a;
+}
+public void setSubjectCode(String b, int c){
+subjectCode[c] = b;
+}
+public void  setScore(float c, int d){
+ score[d] = c;
+ }
+ 
+public String getNameOfSubject(int a){
+return nameOfSubject[a];
+} 
+public String getSubjectCode(int b){
+return subjectCode[b];
+}
+public float getScore(int c){
+return score[c];
+}
+
+         }
+
+
+public class RunCheck {
+
+static student st[] = new student[5];
+static subject su[] = new subject[5];
+
+public static void main(String[] args) {
+ int temp1;
+ String temp;
+ float marks;
+ double average=0;
+ Scanner sc = new Scanner(System.in);
+ Scanner sa = new Scanner(System.in);
+    
+for(int a=0; a<5; a++){
+st[a] = new student();
+}
+
+for(int a=0; a<5; a++){
+su[a] = new subject();
+}
+
+for(int c = 0; c < 5 ; c++){
+
+System.out.print("Enter fullname of student " + (c+1) + ": ");
+temp = sa.nextLine();
+st[c].setFullname(temp);
+
+System.out.print("Enter index number of student " + (c+1) + ": ");
+temp1 = sc.nextInt();
+st[c].setIndex(temp1);
+
+System.out.print("Enter age of student " + (c+1) + ": ");
+temp1 = sc.nextInt();
+st[c].setAge(temp1);
+
+}
+
+
+
+for(int c = 0; c<5 ; c++){
+    
+System.out.print("Enter Subject " + (c+1) + ": ");
+temp = sa.nextLine();
+su[0].setNameOfSubject(temp,c);
+for(int d = 1; d <5; d++){
+su[d].setNameOfSubject(temp,c);
+}
+
+System.out.print("Enter corresponding Subject code: ");
+temp = sa.nextLine();
+su[0].setSubjectCode(temp,c);
+for(int d = 1; d <5; d++){
+su[d].setSubjectCode(temp,c);
+}
+
+}
+
+for(int a = 0; a<5 ; a++){
+    for(int b = 0; b<5; b++){
+System.out.print("Enter " + su[a].getNameOfSubject(b) + " score for " + st[a].getFullname()+" :");
+marks = sc.nextFloat();
+su[a].setScore(marks, b);
+    }
+}
+
+System.out.println();
+
+for(int a = 0; a<5 ; a++){
+    System.out.println(st[a].getFullname());
+    for(int b = 0; b<5; b++){
+    System.out.println(su[a].getNameOfSubject(b)+ " : " +su[a].getScore(b)); 
+    average += su[a].getScore(b);
+    }
+System.out.println("Average : " +(average/5));
+average=0;
+System.out.println();
+}
+
+
+
+    }    
+
+
+}
+ 

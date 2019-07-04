@@ -1,0 +1,72 @@
+package runcheck;
+import java.util.Scanner;
+import java.util.Random;
+
+public class RunCheck {
+
+    static String redeem [] = new String [5];
+    static int gen;
+    static String hey;
+    static Scanner sc = new Scanner(System.in); 
+    static String code;
+    static boolean won = true;
+    static Random ra = new Random();
+    static String first[] = {"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t",
+        "u","v","w","x","y","z","Q","W","E","R","T","Y","U","I","O","P","A","S","D","F","G","H","J","K","L",
+        "Z","X","C","V","B","N","M","0","1","2","3","4","5","6","7","8","9"};
+    
+public static void main(String[] args) {
+    
+        for(int a=0;a<5;a++){
+            
+                        gen = ra.nextInt(62);
+                        code=first[gen];
+           
+                for(int b=1; b<5; b++){
+                    
+                        gen = ra.nextInt(62);
+                        code+=first[gen];
+                        
+                    }
+                redeem[a] = code;
+                code = null;
+                }
+           for(int c =0;c<5;c++){
+                    System.out.println(redeem[c]); 
+        }     
+ 
+        
+        System.out.print("Enter code:");
+        hey = sc.nextLine();
+        for(int t = 0; t<5; t++){
+            
+        if(hey.equals(redeem[t])){
+        System.out.println("Hurraay!! you won!");
+        won = false;
+        }
+        
+        
+        }
+       
+        if(won){
+        
+        System.out.println("Sorry you lost.");
+        
+        }
+        
+        
+       
+        
+        
+}
+            
+   
+        
+        }
+      
+ 
+
+ 
+ 
+
+

@@ -1,0 +1,119 @@
+ package runcheck;
+import java.util.Scanner;
+import java.util.Random;
+
+public class RunCheck {
+    
+static int User_score=0;
+static int CPU_score=0;
+static int User_value;
+static int CPU_value;
+static String  Ro = "Rock";
+static String Pa ="Paper";
+static String Sc ="Scissors";
+static String User_string;
+static String CPU_string;
+static int rounds;
+static Random ra = new Random();
+static Scanner sc = new Scanner(System.in);
+static Scanner snum = new Scanner(System.in);
+
+public static void main(String[] args) {
+    
+    System.out.print("Welcome to Rock Paper Scissors!\nSelect number of rounds:");
+    rounds = snum.nextInt();
+    System.out.println("Enter 1 for \"Rock\" 2 for \"Paper\" 3 for \"Scissors\"");
+    for(int a = 1 ; a<=rounds;a++){
+        System.out.println("Rock paper Scissors Shoot!");
+       CPU_string =  CPU_decide();
+       User_string =  manual_decide();
+       System.out.println("You: "+User_string +"\nCPU: "+CPU_string);
+        
+    if( CPU_string.equals(User_string)){
+        
+    System.out.println("Draw!");
+    
+    }
+    
+    if( CPU_string.equals(Ro) && User_string.equals(Pa) ){
+    User_score+=1;
+    System.out.println("You Win!");
+    
+    }
+    if( CPU_string.equals(Ro) && User_string.equals(Sc) ){
+    CPU_score+=1;
+    System.out.println("You lost, Sorry.");
+    
+    }
+     if( CPU_string.equals(Pa) && User_string.equals(Sc) ){
+    User_score+=1;
+    System.out.println("You Win!");
+    
+    
+    }
+     if( CPU_string.equals(Pa) && User_string.equals(Ro) ){
+    CPU_score+=1;
+    System.out.println("You lost, Sorry.");
+    
+    
+    }
+     if( CPU_string.equals(Sc) && User_string.equals(Ro) ){
+    
+    User_score+=1;
+    System.out.println("You Win!");
+    
+    }
+     if( CPU_string.equals(Sc) && User_string.equals(Pa) ){
+    CPU_score+=1;
+    System.out.println("You lost, Sorry.");
+    
+    }
+     
+    }
+    
+    System.out.println("\nYour score = "+User_score+"\nCPU score = "+CPU_score);
+    
+    if(User_score > CPU_score){
+    System.out.println("Congratulations, You win!");
+    }
+    if(User_score == CPU_score){
+    System.out.println("You Drew!");
+    }
+    if(User_score < CPU_score){
+    System.out.println("Whoops You lose.");
+    }
+}         
+static public String CPU_decide(){
+    
+CPU_value = ra.nextInt(3);
+String Select = Ro;
+switch(CPU_value){
+    case 0:Select = Ro;
+        break;
+    case 1:Select = Pa;
+        break;
+    case 2:Select = Sc;
+        break;
+        
+}
+
+return Select;
+}
+static public String manual_decide(){    
+System.out.print("Enter value:");
+User_value = snum.nextInt();
+String Select = Ro;
+switch(User_value){
+    case 1:Select = Ro;
+        break;
+    case 2:Select = Pa;
+        break;
+    case 3:Select = Sc;
+        break;     
+}
+
+return Select;
+}
+
+}
+      
