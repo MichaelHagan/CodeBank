@@ -1,3 +1,8 @@
+/*
+*Code used to sort class members into groups randomly
+*Used by class members in instances when grouping members became an issues
+*/
+
 #include <iostream>
 #include <string>
 #include <ctime>
